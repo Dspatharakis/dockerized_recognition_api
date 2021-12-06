@@ -1,0 +1,7 @@
+PyYAML
+flask
+imutils
+numpy
+opencv-python
+prometheus-flask-exporter
+gunicorn
