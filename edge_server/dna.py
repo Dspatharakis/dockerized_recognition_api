@@ -4,7 +4,7 @@ import yaml
 import cv2
 import imutils
 import numpy as np
-from edge_server import alphabot_exceptions
+from . import alphabot_exceptions
 
 CONFIG_DEFAULT_PATH = './config.yaml'
 CONFIG_PATH = os.getenv('EDGE_SERVER_CONFIG_PATH')

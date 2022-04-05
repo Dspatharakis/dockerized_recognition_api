@@ -4,11 +4,14 @@ import os
 import random
 import flask
 from werkzeug import utils as wz_utils
-import prometheus_flask_exporter
+from prometheus_flask_exporter import PrometheusMetrics
+
+from prometheus_flask_exporter.multiprocess import GunicornPrometheusMetrics
 from . import alphabot_exceptions
 from . import dna
 
-DEFAULT_IP_ADDR = '192.168.1.5'
+
+DEFAULT_IP_ADDR = '0.0.0.0'
 DEFAULT_PORT = 8000
 
 IP_ADDR = os.getenv('EDGE_SERVER_IP_ADDR')
@@ -27,8 +30,8 @@ else:
 
 D = dna.Dna()
 app = flask.Flask(__name__)
-prometheus_flask_exporter.PrometheusMetrics(app)
-
+metrics = GunicornPrometheusMetrics(app)
+metrics = PrometheusMetrics(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def post_image():
